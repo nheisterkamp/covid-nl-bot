@@ -14,3 +14,7 @@ services:
   covid-nl-bot:
     image: nheisterkamp/covid-nl-bot:latest
     build: .
+    environment:
+      POSTGRES_URL: ${POSTGRES_URL}
+    depends_on:
+      - db

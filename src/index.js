@@ -48,7 +48,7 @@ const main = async () => {
       }
 
       const now = new Date();
-      let update = false;
+      let updated = 0;
 
       for (const record of records) {
         const gemeente = {
@@ -70,14 +70,16 @@ const main = async () => {
               stop_date: now,
             });
             await db.gemeenten.insert(gemeente);
-            update = true;
+            updated++;
           }
         } else {
           await db.gemeenten.insert(gemeente);
         }
       }
       
-      if (update) {
+      console.log(`Updated ${updated} gemeenten`);
+
+      if (updated) {
         const bot = new TelegramBot(API_TOKEN);
         const [{ aantal }] = await db.query(`
           select sum(gevallen) as aantal
