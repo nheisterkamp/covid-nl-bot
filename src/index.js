@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+const fs = require('fs');
 const TelegramBot = require('node-telegram-bot-api');
 const massive = require('massive');
 const cheerio = require('cheerio');
@@ -34,8 +35,11 @@ const main = async () => {
 
     const $ = cheerio.load(html);
     const csvEl = $('#csvData');
-
     const data = `${csvEl.text().trim()}\n`;
+
+    const now = new Date();
+    fs.writeFileSync(`./data/${now.toISOString()}.csv`, data);
+    
     const gemeentenMap = new Map(gemeenten.map(gemeente => ([gemeente.nummer, gemeente])));
 
     csvParse(data, {
@@ -47,7 +51,6 @@ const main = async () => {
         throw csvErr;
       }
 
-      const now = new Date();
       let updated = 0;
 
       for (const record of records) {

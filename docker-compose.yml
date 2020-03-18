@@ -18,3 +18,5 @@ services:
       POSTGRES_URL: ${POSTGRES_URL}
     depends_on:
       - db
+    volumes:
+      - ./data:/app/data
