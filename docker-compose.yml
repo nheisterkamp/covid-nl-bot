@@ -9,11 +9,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - ./.data/db:/var/lib/postgresql/data:delegated
-    ports:
-      - 9876:5432
+    restart: unless-stopped
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 9877:8080
+  covid-nl-bot:
+    image: nheisterkamp/covid-nl-bot:latest
+    build: .

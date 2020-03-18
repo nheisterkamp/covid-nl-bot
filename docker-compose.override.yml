@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  db:
+    ports:
+      - 9876:5432
+
+  adminer:
+    image: adminer
+    ports:
+      - 9877:8080
+    
