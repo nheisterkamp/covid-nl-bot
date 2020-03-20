@@ -14,6 +14,10 @@ const RIVM_INFO_URL = '/onderwerp/infectieziekten/regionaal-internationaal/coron
 const API_TOKEN = process.env.API_TOKEN;
 const POSTGRES_URL = process.env.POSTGRES_URL;
 
+if (!API_TOKEN) {
+  throw new Error('missing API_TOKEN');
+}
+
 const main = async () => {
   const db = await massive({
     connectionString: POSTGRES_URL,
