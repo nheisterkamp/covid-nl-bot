@@ -55,7 +55,7 @@ const main = async () => {
         throw csvErr;
       }
 
-      let updated = 0;
+      let updated = 1;
 
       for (const record of records) {
         const gemeente = {
@@ -93,7 +93,7 @@ const main = async () => {
           from gemeenten
           where stop_date is null
         `)
-        await bot.sendMessage('@covid_nl', `Er zijn momenteel ${aantal} actieve gevallen van COVID-19 in Nederland.`);
+        await bot.sendMessage('@covid_nl', `Er zijn op dit moment in totaal ${aantal} COVID-19 positief geteste personen in Nederland.`);
       }
 
       process.exit(0);
