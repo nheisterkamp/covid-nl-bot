@@ -55,7 +55,7 @@ const main = async () => {
         throw csvErr;
       }
 
-      let updated = 1;
+      let updated = 0;
 
       for (const record of records) {
         const gemeente = {
